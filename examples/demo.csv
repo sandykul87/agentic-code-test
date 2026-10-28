@@ -1,0 +1,13 @@
+item_id,item_description,manufacturer,manufacturer_part_number,category,unit_of_measure,source_system
+C-2001,Relay socket base eleven pin industrial mount,Finder,,Mechanical,EA,ERP
+C-2002,Valve,Spirax,SP-220,Mechanical,EA,ERP
+C-2003,Microfibre cleaning cloth general purpose pack,UNBRANDED,,Safety,TUB,ERP
+C-2004,Copper plumbing pipe fifteen millimetre straight length,Mueller,,Plumbing,M,WMS
+C-2005,Hydraulic gasket ring seal thirty millimetre bore,Parker,PK-30RS,Electronics,PK,MES
+C-2005,Hydraulic gasket ring seal thirty millimetre bore,Parker,PK-30RS,Electronics,PK,MES
+C-2006,Deep groove ball bearing shielded steel insert,NSK,6301-ZZ,Mechanical,EA,ERP
+C-2007,Deep groove ball bearing shielded steel insert alt,NSK,6301 zz,Mechanical,EA,WMS
+C-2008,Safety goggles clear polycarbonate anti fog lens,3M,TM-500,Electrical,BOX,ERP
+C-2009,,Siemens,SM-100,Electrical,EA,ERP
+C-2010,Industrial gearbox reduction unit ratio twenty,Nord,ND-20,Mechanical,EA,ERP
+C-2010,Industrial gearbox reduction unit ratio twenty five,Nord,ND-25,Mechanical,EA,WMS

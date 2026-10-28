@@ -1,0 +1,93 @@
+[
+  {
+    "item_id": "D-1001",
+    "item_description": "Deep groove ball bearing 6205 ZZ sealed steel",
+    "manufacturer": "SKF",
+    "manufacturer_part_number": "",
+    "category": "Electrical",
+    "unit_of_measure": "WIDGET",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "D-1002",
+    "item_description": "Pump",
+    "manufacturer": "Grundfos",
+    "manufacturer_part_number": "GF-900",
+    "category": "Mechanical",
+    "unit_of_measure": "EA",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "D-1003",
+    "item_description": "Copper plumbing pipe fifteen millimetre straight length",
+    "manufacturer": "UNBRANDED",
+    "manufacturer_part_number": "",
+    "category": "",
+    "unit_of_measure": "M",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": 1004,
+    "item_description": "Inductive proximity sensor module twelve volt dc",
+    "manufacturer": "Omron",
+    "manufacturer_part_number": "E2E-X10",
+    "category": "Electronics",
+    "unit_of_measure": "EA",
+    "source_system": "MES"
+  },
+  "this entry is not a JSON object",
+  {
+    "item_id": "D-1006",
+    "item_description": "Cartridge fuse holder panel mount thirty two amp",
+    "manufacturer": "Legrand",
+    "manufacturer_part_number": "6205-ZZ",
+    "category": "Electrical",
+    "unit_of_measure": "BOX",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "D-1007",
+    "item_description": "Cartridge fuse holder panel mount thirty two amp alternate",
+    "manufacturer": "Legrand",
+    "manufacturer_part_number": "6205 zz",
+    "category": "Electrical",
+    "unit_of_measure": "BOX",
+    "source_system": "WMS"
+  },
+  {
+    "item_id": "D-1008",
+    "item_description": "Stainless steel hexagonal bolt forty millimetre grade",
+    "manufacturer": "Bossard",
+    "manufacturer_part_number": "BX-4010",
+    "category": "Mechanical",
+    "unit_of_measure": "PK",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "D-1008",
+    "item_description": "Stainless steel hexagonal bolt forty millimetre grade",
+    "manufacturer": "Bossard",
+    "manufacturer_part_number": "BX-4010",
+    "category": "Mechanical",
+    "unit_of_measure": "PK",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "D-1009",
+    "item_description": "Industrial coupling flexible jaw spider element",
+    "manufacturer": "Lovejoy",
+    "manufacturer_part_number": "L-090",
+    "category": "Mechanical",
+    "unit_of_measure": "EA",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "D-1009",
+    "item_description": "Industrial coupling flexible jaw spider element heavy",
+    "manufacturer": "Lovejoy",
+    "manufacturer_part_number": "L-095",
+    "category": "Plumbing",
+    "unit_of_measure": "EA",
+    "source_system": "WMS"
+  }
+]
