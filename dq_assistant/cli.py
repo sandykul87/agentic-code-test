@@ -24,6 +24,7 @@ Standard library only (Requirement 1.9).
 import argparse
 import os
 import sys
+from importlib.resources import files
 
 from dq_assistant.ai_suggester import StubAISuggester
 from dq_assistant.heuristics import run_heuristics
@@ -39,8 +40,8 @@ EXIT_OUTPUT = 1
 # Error lines written to standard error (one line, no values, no traceback).
 MSG_OVERWRITE_INPUT = "Output path would overwrite the input"
 MSG_CANNOT_WRITE = "Cannot write output: {path}"
+MSG_OUTPUT_EXISTS = "Output path already exists: {path}"
 MSG_UNEXPECTED = "Unexpected error while processing input"
-MSG_SAMPLE_PENDING = "Sample mode is not available yet"
 
 _DESCRIPTION = (
     "Data Quality Assistant: read a file of item master records (.json or "
@@ -176,17 +177,83 @@ def _run_report(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
-def _run_sample(args: argparse.Namespace) -> int:
-    """Sample_Mode entry point.
+def _sample_bytes(fmt: str) -> bytes:
+    """Return the exact bytes of the bundled sample for ``fmt`` ('json'|'csv').
 
-    The argparse surface for ``--sample`` is wired here (the option is
-    recognised and its mutual exclusivity with the Input_File argument is
-    enforced in :func:`main`). The actual Bundled_Sample emission is
-    implemented in a later task; until then this reports a clean error and the
-    non-zero output exit code rather than pretending to succeed.
+    Read via :mod:`importlib.resources` so it works when the package is
+    installed or zipped, not only from a source checkout (Req 21.3, 1.9). The
+    bytes are returned unchanged, including line endings (Req 21.1).
     """
-    print(MSG_SAMPLE_PENDING, file=sys.stderr)
-    return EXIT_OUTPUT
+    return (files("dq_assistant.samples") / f"sample.{fmt}").read_bytes()
+
+
+def _field_guide(fmt: str, output: str | None) -> str:
+    """Build the Field_Guide printed to standard error (Req 21.10).
+
+    Plain text, 1 to 15 lines: it names the six required fields and the one
+    optional field, explains the UNBRANDED default, and shows a run command
+    pointing at ``output`` when given, otherwise a ``sample.<fmt>`` filename.
+    """
+    target = output if output is not None else f"sample.{fmt}"
+    return (
+        "Sample item master records for the Data Quality Assistant.\n"
+        "Required fields: item_id, item_description, manufacturer, category, "
+        "unit_of_measure, source_system.\n"
+        "Optional field: manufacturer_part_number.\n"
+        "For an item with no manufacturer, set manufacturer to UNBRANDED.\n"
+        f"Check this file with: python -m dq_assistant {target}\n"
+    )
+
+
+def _run_sample(args: argparse.Namespace) -> int:
+    """Sample_Mode: write a bundled clean sample to stdout or ``--output``.
+
+    ``--no-ai`` has no effect here (Req 21.8). Standard output stays clean on
+    any error, and the specific sample-error messages are produced here rather
+    than falling through to the generic handler in :func:`main` (Req 21.4,
+    21.5).
+    """
+    fmt = args.sample
+    data = _sample_bytes(fmt)
+    output = args.output
+
+    if output is None:
+        # Write raw bytes to stdout's binary buffer to preserve them exactly;
+        # fall back to the text stream when no buffer is available (captured).
+        buffer = getattr(sys.stdout, "buffer", None)
+        if buffer is not None:
+            buffer.write(data)
+        else:
+            sys.stdout.write(data.decode("utf-8"))
+        sys.stderr.write(_field_guide(fmt, None))
+        return EXIT_OK
+
+    try:
+        # Exclusive-create: refuses an existing file, directory, or symlink
+        # without a separate existence check (Req 21.4).
+        with open(output, "xb") as handle:
+            handle.write(data)
+    except FileExistsError:
+        print(MSG_OUTPUT_EXISTS.format(path=output), file=sys.stderr)
+        return EXIT_OUTPUT
+    except OSError:
+        # Missing parent directory, permission denied, or a path that resolves
+        # to an existing directory (raised as IsADirectoryError/OSError on
+        # open): name the path and leave no partial file (Req 21.5).
+        _unlink_quietly(output)
+        print(MSG_CANNOT_WRITE.format(path=output), file=sys.stderr)
+        return EXIT_OUTPUT
+
+    sys.stderr.write(_field_guide(fmt, output))
+    return EXIT_OK
+
+
+def _unlink_quietly(path: str) -> None:
+    """Remove ``path`` if a partial file was created, ignoring any error."""
+    try:
+        os.unlink(path)
+    except OSError:
+        pass
 
 
 def main(argv: list[str] | None = None) -> int:
