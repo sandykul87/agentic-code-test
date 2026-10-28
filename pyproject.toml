@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dq_assistant"
+version = "0.1.0"
+description = "Data Quality Assistant — suggests human-review candidates for item master records. Runtime uses only the Python 3 standard library."
+requires-python = ">=3.10"
+# Runtime has NO dependencies. Development-only deps live in requirements.txt (pytest, hypothesis).
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["dq_assistant*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

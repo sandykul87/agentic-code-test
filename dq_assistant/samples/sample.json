@@ -1,0 +1,47 @@
+[
+  {
+    "item_id": "SKF-6205",
+    "item_description": "Deep groove ball bearing stainless steel sealed",
+    "manufacturer": "SKF",
+    "manufacturer_part_number": "6205-2RS",
+    "category": "Mechanical",
+    "unit_of_measure": "EA",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "GEN-CLOTH-01",
+    "item_description": "Microfibre cleaning cloth general purpose",
+    "manufacturer": "UNBRANDED",
+    "manufacturer_part_number": "",
+    "category": "Safety",
+    "unit_of_measure": "PK",
+    "source_system": "ERP"
+  },
+  {
+    "item_id": "LEG-PIPE-22",
+    "item_description": "Copper plumbing pipe fifteen millimetre length",
+    "manufacturer": "Legend",
+    "manufacturer_part_number": "LV-1522",
+    "category": "Plumbing",
+    "unit_of_measure": "M",
+    "source_system": "WMS"
+  },
+  {
+    "item_id": "OMR-SENS-07",
+    "item_description": "Inductive proximity sensor module twelve volt",
+    "manufacturer": "Omron",
+    "manufacturer_part_number": "E2E-X10",
+    "category": "Electronics",
+    "unit_of_measure": "EA",
+    "source_system": "MES"
+  },
+  {
+    "item_id": "PAN-FUSE-09",
+    "item_description": "Cartridge fuse holder panel mount rated",
+    "manufacturer": "Panasonic",
+    "manufacturer_part_number": "BP-FH10",
+    "category": "Electrical",
+    "unit_of_measure": "BOX",
+    "source_system": "ERP"
+  }
+]

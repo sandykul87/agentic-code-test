@@ -1,0 +1,6 @@
+item_id,item_description,manufacturer,manufacturer_part_number,category,unit_of_measure,source_system
+SKF-6205,Deep groove ball bearing stainless steel sealed,SKF,6205-2RS,Mechanical,EA,ERP
+GEN-CLOTH-01,Microfibre cleaning cloth general purpose,UNBRANDED,,Safety,PK,ERP
+LEG-PIPE-22,Copper plumbing pipe fifteen millimetre length,Legend,LV-1522,Plumbing,M,WMS
+OMR-SENS-07,Inductive proximity sensor module twelve volt,Omron,E2E-X10,Electronics,EA,MES
+PAN-FUSE-09,Cartridge fuse holder panel mount rated,Panasonic,BP-FH10,Electrical,BOX,ERP
