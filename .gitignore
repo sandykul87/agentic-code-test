@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+# AI/ADR submission artifacts kept local-only
+docs/adr/
+docs/AI_USAGE.md
+docs/PROMPTS.md
