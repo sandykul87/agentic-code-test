@@ -72,12 +72,12 @@ All work happens in the repo `/Users/sandeshkulkarni/git/agentic-code-test` on a
   - Add `demo.json` and `demo.csv` that together trigger all 11 Issue_Types; assert in a test that the combined Reports cover each type (minus cross_system_duplicate if Req 22 deferred).
   - _Requirements: 18.8, 18.9_
 
-- [-] 14. Documentation: README, ADRs, AI_USAGE, PROMPTS, spec copy
+- [x] 14. Documentation: README, ADRs, AI_USAGE, PROMPTS, spec copy
   - Write README (install, run, `python -m dq_assistant <input> [--output FILE] [--no-ai]`, `--sample`, sample I/O, UNBRANDED, header rule, assumptions, tradeoffs, known limitations incl. non-English + formula-injection caveat, next steps incl. Req 22 if deferred).
   - Add ADR-0001/0002/0003, `docs/AI_USAGE.md`, `docs/PROMPTS.md` (session + planned + production prompt template), and copy requirements/design/tasks into `docs/spec/`.
   - _Requirements: 17.6, 17.7, 17.8, 18.1–18.14_
 
-- [ ] 15. Final verification and submission prep
+- [-] 15. Final verification and submission prep
   - Run `python -m pytest` (all green, no network), run the tool on both demo files with and without `--no-ai`, confirm byte-identical repeat output and an unchanged input file.
   - Confirm `docs/spec/` copies match the specs; ensure the working tree is clean and all task commits are present on `develop`. Report readiness; push only on user go-ahead.
   - _Requirements: 15.1, 19.10, 18.1_
