@@ -1,6 +1,7 @@
 """Constants, Review_Candidate builder, and finding_id (Requirements 12, 13)."""
 
 import hashlib
+import re
 
 ISSUE_TYPES = frozenset(
     {
@@ -51,6 +52,33 @@ ALLOWED_ACTIONS = ("approve", "reject", "investigate")
 MAX_OBSERVED_CHARS = 50
 MAX_EXPLANATION_CHARS = 500
 MAX_SUGGESTED_ACTION_CHARS = 300
+
+# Review-language rules (Requirement 14). Shared by the Suggestion_Validator
+# (Req 11.5, 11.6) and the report checks.
+FORBIDDEN_TERMS = ("fixed", "corrected", "auto-approved", "auto-fixed", "resolved")
+EXPLANATION_WORDING = ("candidate", "potential", "needs review")
+ACTION_WORDING = ("review", "verify", "confirm", "check")
+_FORBIDDEN_RE = re.compile(
+    r"(?<![0-9A-Za-z])(?:" + "|".join(re.escape(t) for t in FORBIDDEN_TERMS) + r")(?![0-9A-Za-z])",
+    re.IGNORECASE,
+)
+
+
+def contains_forbidden_term(text: str) -> bool:
+    """True when ``text`` holds a Req 14.4 term as a whole word (case-insensitive)."""
+    return _FORBIDDEN_RE.search(text) is not None
+
+
+def has_explanation_wording(text: str) -> bool:
+    """True when ``text`` contains candidate/potential/needs review (Req 14.2)."""
+    lowered = text.lower()
+    return any(phrase in lowered for phrase in EXPLANATION_WORDING)
+
+
+def has_action_wording(text: str) -> bool:
+    """True when ``text`` contains review/verify/confirm/check (Req 14.3)."""
+    lowered = text.lower()
+    return any(word in lowered for word in ACTION_WORDING)
 
 
 def finding_id(issue_type: str, row_index: int, item_id: str | None, field: str | None) -> str:
